@@ -3,7 +3,9 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 * An HTTP endpoint that acts as a webhook for HTTP request event
 * @returns {object} workflow The result of your workflow steps
 */
-module.exports = async () => {
+module.exports = async (context) => {
+
+  console.log(context.params);
 
   // Prepare workflow object to store API responses
   
@@ -14,8 +16,8 @@ module.exports = async () => {
   console.log(`Running slack.channels[@0.4.18].messages.create()...`);
   
   workflow.response = await lib.slack.channels['@0.4.18'].messages.create({
-    channel: `#test123`,
-    text: `hmm`,
+    channel: `#fingerprint-demo`,
+    text: `Hello from stdlib!`,
     attachments: null
   });
 
