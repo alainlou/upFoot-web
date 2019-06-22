@@ -5,7 +5,7 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 */
 module.exports = async (context) => {
 
-  let username = context.params['user'];
+  let name = context.params['name'];
   let verified = context.params['verified']
 
   let tmp = context.http.headers;
@@ -22,7 +22,7 @@ module.exports = async (context) => {
   
   workflow.response = await lib.slack.channels['@0.4.18'].messages.create({
     channel: `#fingerprint-demo`,
-    text: username + ` has entered the building.`,
+    text: name + ` has entered the building.`,
     attachments: null
   });
 
