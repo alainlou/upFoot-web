@@ -27,7 +27,7 @@ module.exports = async (context) => {
 
   // Setting the message to display in Slack
   let message = name + ` was `;
-  if(verified === true) {
+  if(verified === 'true') {
     message = message + `verified.`;
   } else {
     message = message + `not verified.`;
