@@ -16,12 +16,9 @@ module.exports = async (context) => {
    * let verified = context.http.headers['x-verified']
    */
   
-  
   // Prepare workflow object to store API responses
   
   let workflow = {};
-  
-  // [Workflow Step 1]
   
   console.log(`Running slack.channels[@0.4.18].messages.create()...`);
 
@@ -32,11 +29,21 @@ module.exports = async (context) => {
   } else {
     message = message + `not verified.`;
   }
-  
-  workflow.response = await lib.slack.channels['@0.4.18'].messages.create({
+
+  workflow.slackBotResult = await lib.slack.channels['@0.4.18'].messages.create({
     channel: `#fingerprint-demo`,
     text: message,
     attachments: null
+  });
+
+  console.log(`Running airtable.query[@0.1.1].insert()...`);
+  workflow.insertQueryResult = await lib.airtable.query['@0.1.1'].insert({
+    table: `Credentials`,
+    fields: {
+      'Name': name,
+      'Verified': verified,
+      'Time': new Date().toUTCString()
+    }
   });
 
   return workflow;
