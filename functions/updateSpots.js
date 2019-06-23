@@ -4,19 +4,23 @@ const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 * @returns {object} workflow The result of your workflow steps
 */
 module.exports = async (context) => {
-  let space = context.params['space'];
-  let traffic = context.params['traffic'];
+  let spot= context.params['spot'];
+  let people= context.params['people'];
   
   // Prepare workflow object to store API responses
   
   let workflow = {};
 
-  console.log(`Running airtable.query[@0.1.1].insert()...`);
-  workflow.insertQueryResult = await lib.airtable.query['@0.1.1'].insert({
-    table: `Traffic`,
+  console.log(`Running airtable.query[@0.1.1].update()...`);
+  let select = {
+    "Spot": spot
+  };
+  workflow.updateQueryResult = await lib.airtable.query['@0.1.1'].update({
+    table: `Spots`,
+    where: select,
     fields: {
-      'Space': space,
-      'Traffic': traffic,
+      'Spot': spot,
+      'People': people,
       'Time': new Date().toUTCString()
     }
   });

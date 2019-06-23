@@ -10,7 +10,7 @@ module.exports = async (event) => {
   
   let workflow = {};
   
-  // Fetch traffic info from Airtable
+  // Fetch room info from Airtable
   
   workflow.queryResult = await lib.airtable.query['@0.1.1'].select({
     table: "Traffic"
@@ -22,7 +22,7 @@ module.exports = async (event) => {
   }
   
   // [Workflow Step 1]
-
+  
   console.log(`Running slack.conversations[@0.0.5].info()...`);
   
   workflow.channel = await lib.slack.conversations['@0.0.5'].info({
