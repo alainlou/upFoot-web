@@ -1,6 +1,6 @@
 # upFoot-web
 
-This is an webservice built with Standard Library for our foot traffic [IoT sensor](https://github.com/alainlou/upFoot-web). It takes HTTP requests from our device to update our Airtable.
+This is an web service built with Standard Library for our foot traffic [IoT sensor](https://github.com/alainlou/upFoot-web). It takes HTTP requests from our device to update our Airtable (our primary data store).
 
 | HTTP Method | Path | Query Params | Return Value |
 | ----------- | ---- | ------------ | ------------ |
